@@ -391,7 +391,7 @@ void MLFDeserializer::InitializeChunkDescriptions(CorpusDescriptorPtr corpus, co
             // Preparing chunk info that will be exposed to the outside.
             for (uint32_t i = 0; i < chunk.Sequences().size(); ++i)
             {
-                const auto& sequence = chunk.m_sequences[i];
+                const auto& sequence = chunk.Sequences()[i];
                 m_keyToChunkLocation.push_back(std::make_tuple(sequence.m_key, static_cast<ChunkIdType>(m_chunks.size()), i));
             }
 
@@ -504,14 +504,14 @@ bool MLFDeserializer::GetSequenceDescriptionByKey(const KeyType& key, SequenceDe
 
 
     const auto* chunk = m_chunks[chunkId];
-    const auto& sequence = chunk->m_sequences[sequenceIndexInChunk];
+    const auto& sequence = chunk->Sequences()[sequenceIndexInChunk];
 
     result.m_chunkId = std::get<1>(*found);
     result.m_key = key;
 
     if (m_frameMode)
     {
-        result.m_indexInChunk = chunk->m_sequenceOffsetInChunkInSamples[sequenceIndexInChunk] + key.m_sample;
+        result.m_indexInChunk = chunk->SequenceOffsetInSamples()[sequenceIndexInChunk] + key.m_sample;
         result.m_numberOfSamples = 1;
     }
     else

@@ -388,7 +388,7 @@ typename TextParser<ElemType>::SequenceBuffer TextParser<ElemType>::LoadSequence
             "WARNING: Exhausted all input"
             " expected for the current sequence (id = %" PRIu64 ") %ls,"
             " but only read %" PRIu64 " out of %" PRIu64 " expected rows.\n",
-            sequenceDsc.m_key.m_sequence,
+            sequenceDsc.m_key,
             GetFileInfo().c_str(), numRowsRead, expectedRowCount);
 
     }

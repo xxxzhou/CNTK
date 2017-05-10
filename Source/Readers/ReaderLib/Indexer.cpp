@@ -273,7 +273,7 @@ void Index::MapSequenceKeyToLocation()
 
     for (uint32_t i = 0; i < m_chunks.size(); i++)
         for (uint32_t j = 0; j < m_chunks[i].Sequences().size(); j++)
-            m_keyToSequenceInChunk.emplace_back(m_chunks[i].Sequences()[j].m_key.m_sequence, i, j);
+            m_keyToSequenceInChunk.emplace_back(m_chunks[i].Sequences()[j].m_key, i, j);
 
     // Sort for fast retrieval afterwards
     std::sort(m_keyToSequenceInChunk.begin(), m_keyToSequenceInChunk.end(),
